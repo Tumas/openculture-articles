@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
+  </head>
+<body>
+
+<h1>List of articles in openculture.com</h1>
+
+<ul id="articles">
+</ul>
+
+</body>
+  <script type="text/javascript">
+    $(function() {
+      $.getJSON('articles.json', function(data) {
+        const node = document.getElementById("articles")
+
+        for (article of data) {
+          const articleNode = document.createElement("li")
+          const textNode = document.createTextNode(article.title + ', ' + article.date)
+
+          articleNode.appendChild(textNode)
+          node.appendChild(articleNode)
+        }
+      })
+    })
+  </script>
+</html>
